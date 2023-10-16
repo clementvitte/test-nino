@@ -1,4 +1,24 @@
+import axios from "axios"
+import { useState } from "react";
+
 export function MusicField() {
+
+    let [data, setData] = useState('');
+
+    const getMusic = async (number: number) => {
+        await axios.get('https://mehtify.garon1.repl.co/musics/')
+            .then(res => {
+                setData(res.data[number].title);
+                 console.log(res)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+    getMusic(1);
+
+    
+
     return (
         <div style={{backgroundColor: "grey"}}>
             <nav className="mx-auto flex max-w-8xl items-center justify-between lg:px-8" aria-label="Global">
@@ -10,7 +30,7 @@ export function MusicField() {
 
                 <div>
                     <a href="#" className="font-semibold leading-6 text-gray-900 text-1xl">
-                        Title
+                        title
                     </a>
                 </div>
 
